@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
     String tipoOrdenamiento;
-    int matriz[];
+    int matriz[] = {21, 40, 4, 9, 10, 35};
 
     public Ordenamiento() {
         initComponents();
@@ -15,6 +15,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         this.setLocationRelativeTo(this);
+        jTextArea1.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +40,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         jLabel1.setText("Selecciona metodo ordenamiento");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -67,7 +69,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                                     .addComponent(comboMetodos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnOrdenar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelLayout.setVerticalGroup(
@@ -139,6 +141,36 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
     @Override
     public void burbuja(int[] matriz) {
+        int temporal;
+        for (int i = 0; i < matriz.length; i++) {
+
+            for (int j = 0; j < matriz.length - 1; j++) {
+
+                //  System.out.println(" Se cambia el " + arreglo[j] + " por el " + arreglo[j + 1]);
+                if (matriz[j] > matriz[j + 1]) {
+
+                    for (int k = 0; k < matriz.length; k++) {
+
+                        System.out.print(" " + matriz[k]);
+                        jTextArea1.append(" " + matriz[k]);
+
+                    }
+                    //jTextArea1.append(System.getProperty("line.separator"));
+                    jTextArea1.append(" " +" <-- Se cambia el " +matriz[j]+" por el " + matriz[j + 1] +"\n");
+                    System.out.println(" <-- Se cambia el " + matriz[j] + " por el " + matriz[j + 1]);
+
+                    System.out.println("");
+                    temporal = matriz[j];
+
+                    matriz[j] = matriz[j + 1];
+
+                    matriz[j + 1] = temporal;
+
+                }
+
+            }
+
+        }
     }
 
     @Override
