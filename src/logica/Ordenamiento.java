@@ -109,7 +109,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         switch (tipoOrdenamiento) {
             case "Burbuja":
                 jTextArea1.setText("");
-                burbuja(matriz);
+                if(jTextArea1.getText().isEmpty()){
+                 burbuja(matriz);
+                }
+               
                 break;
             case "Insercion":
                 jTextArea1.setText("");
