@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
     String tipoOrdenamiento;
-    int matriz[] = {21, 40, 4, 9, 10, 35};
-    // int matriz[] = {8, 12, 16, 4, 20, 24, 28};
+    int nElementos;
+    int matriz[];
 
     public Ordenamiento() {
         initComponents();
@@ -17,6 +17,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         setResizable(false);
         this.setLocationRelativeTo(this);
         jTextArea1.setEditable(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -118,43 +119,73 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
         tipoOrdenamiento = (String) comboMetodos.getSelectedItem();
+        if (comboMetodos.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un metodo a ordenar");
+        } else {
+            nElementos = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad de elelmentos"));
+            matriz = new int[nElementos];
+            for (int i = 0; i < nElementos; i++) {
+                matriz[i] = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el numero en la posicion " + (i + 1)));
+            }
+        }
+
         switch (tipoOrdenamiento) {
             case "Burbuja":
-                if (jTextArea1.getText().isEmpty()) {
+                
                     jTextArea1.setForeground(Color.GREEN);
                     jTextArea1.append(" \n Metodo Burbuja");
+                    jTextArea1.append(" \n Arreglo original");
+                    for (int i = 0; i < matriz.length; i++) {
+                        jTextArea1.append(" " + matriz[i]);
+
+                    }
                     long inicio = System.currentTimeMillis();
                     jTextArea1.append(" \n");
                     burbuja(matriz);
                     long fin2 = System.currentTimeMillis();
                     double tiempo = (double) ((fin2 - inicio));
                     lblTiempo.setText(" " + tiempo);
-                }
+                
 
                 break;
             case "Insercion":
                 jTextArea1.setForeground(Color.BLUE);
                 jTextArea1.append(" \n Metodo Insercion");
-                long inicio = System.currentTimeMillis();
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
+                long inici = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 insercion(matriz);
-                long fin2 = System.currentTimeMillis();
-                double tiempo = (double) ((fin2 - inicio));
-                lblTiempo.setText(" " + tiempo);
+                long fin3 = System.currentTimeMillis();
+                double tiemp = (double) ((fin3 - inici));
+                lblTiempo.setText(" " + tiemp);
                 break;
             case "Seleccion":
                 jTextArea1.setForeground(Color.red);
                 jTextArea1.append(" \n Metodo Seleccion");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
                 long ini = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 seleccion(matriz);
-                long fin3 = System.currentTimeMillis();
-                double te = (double) ((fin3 - ini));
+                long fin4 = System.currentTimeMillis();
+                double te = (double) ((fin4 - ini));
                 lblTiempo.setText(" " + te);
                 break;
             case "Mezcla":
                 jTextArea1.setForeground(Color.ORANGE);
                 jTextArea1.append(" \n Metodo Mezcla");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
                 jTextArea1.append(" \n Arreglo original");
                 for (int l = 0; l < matriz.length; l++) {
                     jTextArea1.append("  " + matriz[l]);
@@ -174,6 +205,11 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
             case "Shellsort":
                 jTextArea1.setForeground(Color.GRAY);
                 jTextArea1.append(" \n Metodo Shellsort");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
                 long in = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 Shellsort(matriz);
@@ -186,15 +222,17 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 int j = matriz.length - 1;
                 jTextArea1.setForeground(Color.MAGENTA);
                 jTextArea1.append(" \n Metodo Quicksort");
+                jTextArea1.append(" \n Arreglo original");
+                for (int k = 0; k < matriz.length; k++) {
+                    jTextArea1.append(" " + matriz[k]);
+
+                }
                 long in2 = System.currentTimeMillis();
 
                 quicksort(matriz, i, j);
                 long f2 = System.currentTimeMillis();
                 double tm = (double) ((f2 - in2));
                 lblTiempo.setText(" " + tm);
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Seleccione un valor valido");
                 break;
 
         }
@@ -300,25 +338,26 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         int minimo, aux;
         for (int i = 0; i < matriz.length - 1; i++) {
             minimo = i;
-            for (int j = i + 1; j < matriz.length; j++) {
-
-                if (matriz[j] < matriz[minimo]) {
-                    minimo = j;
-
-                }
-
-            }
             for (int k = 0; k < matriz.length; k++) {
                 jTextArea1.append(" " + matriz[k]);
 
             }
+
+            for (int j = i + 1; j < matriz.length; j++) {
+                if (matriz[j] < matriz[minimo]) {
+                    minimo = j;
+                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[i] + " por el " + matriz[minimo] + "\n");
+
+                }
+
+            }
+
             aux = matriz[i];
             matriz[i] = matriz[minimo];
             matriz[minimo] = aux;
-            jTextArea1.append(" " + " <-- Se cambia el " + matriz[i] + " por el " + matriz[minimo] + "\n");
 
         }
-        jTextArea1.append(" \n Arreglo ordenado");
+        jTextArea1.append(" \n Arreglo ordenado -->");
         for (int i = 0; i < matriz.length; i++) {
             jTextArea1.append(" " + matriz[i]);
 
@@ -333,21 +372,26 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
             int elementosDer = matriz.length - elementosIzq;
             int arregloIzq[] = new int[elementosIzq];
             int arregloDer[] = new int[elementosDer];
+             jTextArea1.append(" \n Subarreglo A --> ");
             for (i = 0; i < elementosIzq; i++) {
                 arregloIzq[i] = matriz[i];
+                 jTextArea1.append(" "+matriz[i]);
             }
+            jTextArea1.append(" \n Subarreglo B --> ");
             for (i = elementosIzq; i < elementosIzq + elementosDer; i++) {
                 arregloDer[i - elementosIzq] = matriz[i];
+                 jTextArea1.append(" "+matriz[i]);
             }
             arregloIzq = mezcla(arregloIzq);
             arregloDer = mezcla(arregloDer);
-            jTextArea1.append(" " + " <-- Se cambia el " + matriz[elementosIzq] + " por el " + matriz[elementosDer] + "\n");
+
             i = 0;
             j = 0;
             k = 0;
             while (arregloIzq.length != j && arregloDer.length != k) {
                 if (arregloIzq[j] < arregloDer[k]) {
                     matriz[i] = arregloIzq[j];
+                    //jTextArea1.append(" " + " <-- Se cambia el " + matriz[elementosIzq] + " por el " + matriz[elementosDer] + "\n");
                     i++;
                     j++;
 
@@ -419,7 +463,11 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         int j = der;         // j realiza la búsqueda de derecha a izquierda
         int aux;
 
-        while (i < j) {                          // mientras no se crucen las búsquedas                                   
+        while (i < j) {
+            for (int k = 0; k < Arreglo.length; k++) {
+                jTextArea1.append(" " + Arreglo[k]);
+            }
+            jTextArea1.append(" \n" + " <-- Se cambia el " + Arreglo[izq] + " por el " + Arreglo[der]);// mientras no se crucen las búsquedas                                   
             while (Arreglo[i] <= pivote && i < j) {
                 i++; // busca elemento mayor que pivote
             }
@@ -431,7 +479,6 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 aux = Arreglo[i];                      // los intercambia
                 Arreglo[i] = Arreglo[j];
                 Arreglo[j] = aux;
-                jTextArea1.append(" " + " <-- Se cambia el " + matriz[i] + " por el " + matriz[j] + "\n");
 
             }
         }
@@ -444,17 +491,12 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         }
         if (j + 1 < der) {
             quicksort(Arreglo, j + 1, der);
-            for (int k = 0; k < matriz.length; k++) {
 
-                System.out.print(" " + matriz[k]);
-                jTextArea1.append(" " + matriz[k]);
-
-            }// ordenamos subarray derecho
         }
-        jTextArea1.append(" Arreglo ordenado \n");
+        jTextArea1.append(" \nArreglo ordenado ");
         for (int k = 0; k < Arreglo.length; k++) {
 
-            jTextArea1.append(" " + matriz[k]);
+            jTextArea1.append(" " + Arreglo[k]);
 
         }
     }
