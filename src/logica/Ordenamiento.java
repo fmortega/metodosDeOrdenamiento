@@ -3,11 +3,12 @@ package logica;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-public class Ordenamiento extends javax.swing.JFrame implements Ordena {
+public class Ordenamiento extends javax.swing.JFrame  {
 
     String tipoOrdenamiento;
     int nElementos;
     int matriz[];
+    MetodosOrdenamiento metodos;
 
     public Ordenamiento() {
         initComponents();
@@ -17,6 +18,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
         setResizable(false);
         this.setLocationRelativeTo(this);
         jTextArea1.setEditable(false);
+        metodos = new MetodosOrdenamiento();
 
     }
 
@@ -86,7 +88,7 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                             .addGap(8, 8, 8)
                             .addComponent(jLabel2)
                             .addGap(10, 10, 10)
-                            .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -131,21 +133,20 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
         switch (tipoOrdenamiento) {
             case "Burbuja":
-                
-                    jTextArea1.setForeground(Color.GREEN);
-                    jTextArea1.append(" \n Metodo Burbuja");
-                    jTextArea1.append(" \n Arreglo original");
-                    for (int i = 0; i < matriz.length; i++) {
-                        jTextArea1.append(" " + matriz[i]);
 
-                    }
-                    long inicio = System.currentTimeMillis();
-                    jTextArea1.append(" \n");
-                    burbuja(matriz);
-                    long fin2 = System.currentTimeMillis();
-                    double tiempo = (double) ((fin2 - inicio));
-                    lblTiempo.setText(" " + tiempo);
-                
+                jTextArea1.setForeground(Color.GREEN);
+                jTextArea1.append(" \n Metodo Burbuja");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
+                long inicio = System.currentTimeMillis();
+                jTextArea1.append(" \n");
+                metodos.burbuja(matriz);
+                long fin2 = System.currentTimeMillis();
+                double tiempo = (double) ((fin2 - inicio));
+                lblTiempo.setText(" " + tiempo+" milisegundos");
 
                 break;
             case "Insercion":
@@ -158,10 +159,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 }
                 long inici = System.currentTimeMillis();
                 jTextArea1.append(" \n");
-                insercion(matriz);
+                metodos.insercion(matriz);
                 long fin3 = System.currentTimeMillis();
                 double tiemp = (double) ((fin3 - inici));
-                lblTiempo.setText(" " + tiemp);
+                lblTiempo.setText(" " + tiemp+" milisegundos");
                 break;
             case "Seleccion":
                 jTextArea1.setForeground(Color.red);
@@ -173,10 +174,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 }
                 long ini = System.currentTimeMillis();
                 jTextArea1.append(" \n");
-                seleccion(matriz);
+                metodos.seleccion(matriz);
                 long fin4 = System.currentTimeMillis();
                 double te = (double) ((fin4 - ini));
-                lblTiempo.setText(" " + te);
+                lblTiempo.setText(" " + te+" milisegundos");
                 break;
             case "Mezcla":
                 jTextArea1.setForeground(Color.ORANGE);
@@ -192,10 +193,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
 
                 }
                 long inc = System.currentTimeMillis();
-                matriz = mezcla(matriz);
+                matriz = metodos.mezcla(matriz);
                 long fin = System.currentTimeMillis();
                 double tmp = (double) ((fin - inc));
-                lblTiempo.setText(" " + tmp);
+                lblTiempo.setText(" " + tmp+" milisegundos");
                 jTextArea1.append(" \n Arreglo ordenado");
                 for (int l = 0; l < matriz.length; l++) {
                     jTextArea1.append("  " + matriz[l]);
@@ -212,10 +213,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 }
                 long in = System.currentTimeMillis();
                 jTextArea1.append(" \n");
-                Shellsort(matriz);
+                metodos.Shellsort(matriz);
                 long f = System.currentTimeMillis();
                 double t = (double) ((f - in));
-                lblTiempo.setText(" " + t);
+                lblTiempo.setText(" " + t+" milisegundos");
                 break;
             case "quicksort":
                 int i = 1;
@@ -229,10 +230,10 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
                 }
                 long in2 = System.currentTimeMillis();
 
-                quicksort(matriz, i, j);
+                metodos.quicksort(matriz, i, j);
                 long f2 = System.currentTimeMillis();
                 double tm = (double) ((f2 - in2));
-                lblTiempo.setText(" " + tm);
+                lblTiempo.setText(" " + tm+" milisegundos");
                 break;
 
         }
@@ -257,247 +258,11 @@ public class Ordenamiento extends javax.swing.JFrame implements Ordena {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblTiempo;
     public static javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void burbuja(int[] matriz) {
-        int temporal;
-        for (int i = 0; i < matriz.length; i++) {
-
-            for (int j = 0; j < matriz.length - 1; j++) {
-
-                if (matriz[j] > matriz[j + 1]) {
-
-                    for (int k = 0; k < matriz.length; k++) {
-
-                        // System.out.print(" " + matriz[k]);
-                        jTextArea1.append(" " + matriz[k]);
-
-                    }
-
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[j] + " por el " + matriz[j + 1] + "\n");
-                    //  System.out.println(" <-- Se cambia el " + matriz[j] + " por el " + matriz[j + 1]);
-
-                    System.out.println("");
-                    temporal = matriz[j];
-
-                    matriz[j] = matriz[j + 1];
-
-                    matriz[j + 1] = temporal;
-
-                }
-
-            }
-
-        }
-    }
-
-    @Override
-    public void insercion(int[] matriz) {
-        int pos;
-        int aux;
-        try {
-            for (int i = 0; i < matriz.length; i++) {
-                pos = i;
-                aux = matriz[i];
-
-                if (pos > 0) {
-                    for (int k = 0; k < matriz.length; k++) {
-
-                        System.out.print(" " + matriz[k]);
-                        jTextArea1.append(" " + matriz[k]);
-
-                    }
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[pos] + " por el " + matriz[pos - 1] + "\n");
-                    System.out.println(" <-- Se cambia el " + matriz[pos] + " por el " + matriz[pos - 1]);
-                }
-
-                while ((pos > 0) && (matriz[pos - 1] > aux)) {
-                    matriz[pos] = matriz[pos - 1];
-                    pos--;
-                }
-                matriz[pos] = aux;
-
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-        }
-        jTextArea1.append(" \n Arreglo ordenado");
-        for (int i = 0; i < matriz.length; i++) {
-            jTextArea1.append(" " + matriz[i]);
-
-        }
+   
 
     }
-
-    @Override
-    public void seleccion(int[] matriz) {
-        int minimo, aux;
-        for (int i = 0; i < matriz.length - 1; i++) {
-            minimo = i;
-            for (int k = 0; k < matriz.length; k++) {
-                jTextArea1.append(" " + matriz[k]);
-
-            }
-
-            for (int j = i + 1; j < matriz.length; j++) {
-                if (matriz[j] < matriz[minimo]) {
-                    minimo = j;
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[i] + " por el " + matriz[minimo] + "\n");
-
-                }
-
-            }
-
-            aux = matriz[i];
-            matriz[i] = matriz[minimo];
-            matriz[minimo] = aux;
-
-        }
-        jTextArea1.append(" \n Arreglo ordenado -->");
-        for (int i = 0; i < matriz.length; i++) {
-            jTextArea1.append(" " + matriz[i]);
-
-        }
-    }
-
-    @Override
-    public int[] mezcla(int[] matriz) {
-        int i, j, k;
-        if (matriz.length > 1) {
-            int elementosIzq = matriz.length / 2;
-            int elementosDer = matriz.length - elementosIzq;
-            int arregloIzq[] = new int[elementosIzq];
-            int arregloDer[] = new int[elementosDer];
-             jTextArea1.append(" \n Subarreglo A --> ");
-            for (i = 0; i < elementosIzq; i++) {
-                arregloIzq[i] = matriz[i];
-                 jTextArea1.append(" "+matriz[i]);
-            }
-            jTextArea1.append(" \n Subarreglo B --> ");
-            for (i = elementosIzq; i < elementosIzq + elementosDer; i++) {
-                arregloDer[i - elementosIzq] = matriz[i];
-                 jTextArea1.append(" "+matriz[i]);
-            }
-            arregloIzq = mezcla(arregloIzq);
-            arregloDer = mezcla(arregloDer);
-
-            i = 0;
-            j = 0;
-            k = 0;
-            while (arregloIzq.length != j && arregloDer.length != k) {
-                if (arregloIzq[j] < arregloDer[k]) {
-                    matriz[i] = arregloIzq[j];
-                    //jTextArea1.append(" " + " <-- Se cambia el " + matriz[elementosIzq] + " por el " + matriz[elementosDer] + "\n");
-                    i++;
-                    j++;
-
-                } else {
-                    matriz[i] = arregloDer[k];
-                    i++;
-                    k++;
-                }
-            }
-            while (arregloIzq.length != j) {
-                matriz[i] = arregloIzq[j];
-                i++;
-                j++;
-
-            }
-            while (arregloDer.length != k) {
-                matriz[i] = arregloDer[k];
-                i++;
-                k++;
-
-            }
-
-        }
-
-        return matriz;
-
-    }
-
-    @Override
-    public void Shellsort(int[] matriz) {
-
-        for (int increment = matriz.length / 2; increment > 0; increment
-                = (increment == 2) ? 1 : (int) Math.round(increment / 2.2)) {
-
-            for (int i = increment; i < matriz.length; i++) {
-                for (int k = 0; k < matriz.length; k++) {
-
-                    System.out.print(" " + matriz[k]);
-                    jTextArea1.append(" " + matriz[k]);
-
-                }
-
-                for (int j = i; j >= increment && matriz[j - increment]
-                        > matriz[j]; j -= increment) {
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[j] + " por el " + matriz[j - increment] + "\n");
-                    int temp = matriz[j];
-                    matriz[j] = matriz[j - increment];
-                    matriz[j - increment] = temp;
-
-                }
-
-            }
-        }
-        jTextArea1.append(" Arreglo ordenado \n");
-        for (int k = 0; k < matriz.length; k++) {
-
-            System.out.print(" " + matriz[k]);
-            jTextArea1.append(" " + matriz[k]);
-
-        }
-
-    }
-
-    @Override
-    public void quicksort(int[] Arreglo, int izq, int der) {
-
-        int pivote = Arreglo[izq]; // tomamos primer elemento como pivote
-        int i = izq;         // i realiza la búsqueda de izquierda a derecha
-        int j = der;         // j realiza la búsqueda de derecha a izquierda
-        int aux;
-
-        while (i < j) {
-            for (int k = 0; k < Arreglo.length; k++) {
-                jTextArea1.append(" " + Arreglo[k]);
-            }
-            jTextArea1.append(" \n" + " <-- Se cambia el " + Arreglo[izq] + " por el " + Arreglo[der]);// mientras no se crucen las búsquedas                                   
-            while (Arreglo[i] <= pivote && i < j) {
-                i++; // busca elemento mayor que pivote
-            }
-            while (Arreglo[j] > pivote) {
-                j--;           // busca elemento menor que pivote
-            }
-
-            if (i < j) {                        // si no se han cruzado                      
-                aux = Arreglo[i];                      // los intercambia
-                Arreglo[i] = Arreglo[j];
-                Arreglo[j] = aux;
-
-            }
-        }
-
-        Arreglo[izq] = Arreglo[j];      // se coloca el pivote en su lugar de forma que tendremos                                    
-        Arreglo[j] = pivote;      // los menores a su izquierda y los mayores a su derecha
-
-        if (izq < j - 1) {
-            quicksort(Arreglo, izq, j - 1);          // ordenamos subarray izquierdo
-        }
-        if (j + 1 < der) {
-            quicksort(Arreglo, j + 1, der);
-
-        }
-        jTextArea1.append(" \nArreglo ordenado ");
-        for (int k = 0; k < Arreglo.length; k++) {
-
-            jTextArea1.append(" " + Arreglo[k]);
-
-        }
-    }
-}
