@@ -143,7 +143,7 @@ public class MetodosOrdenamiento implements Ordena {
                 matriz[i] = arregloIzq[j];
                 i++;
                 j++;
-   
+
             }
             while (arregloDer.length != k) {
                 matriz[i] = arregloDer[k];
@@ -188,17 +188,18 @@ public class MetodosOrdenamiento implements Ordena {
         int aux;
 
         while (i < j) {
-            for (int k = 0; k < Arreglo.length; k++) {
-                jTextArea1.append(" " + Arreglo[k]);
-            }
+
             jTextArea1.append(" \n" + " <-- Se cambia el [ " + Arreglo[izq] + " ] por el [ " + Arreglo[der] + " ] ");// mientras no se crucen las búsquedas                                   
             while (Arreglo[i] <= pivote && i < j) {
+
                 i++; // busca elemento mayor que pivote
             }
             while (Arreglo[j] > pivote) {
                 j--;           // busca elemento menor que pivote
             }
-
+            for (int k = 0; k < Arreglo.length; k++) {
+                jTextArea1.append(" " + Arreglo[k]);
+            }
             if (i < j) {                        // si no se han cruzado                      
                 aux = Arreglo[i];                      // los intercambia
                 Arreglo[i] = Arreglo[j];
@@ -217,12 +218,7 @@ public class MetodosOrdenamiento implements Ordena {
             quicksort(Arreglo, j + 1, der);
 
         }
-        jTextArea1.append(" \nArreglo ordenado ");
-        for (int k = 0; k < Arreglo.length; k++) {
 
-            jTextArea1.append(" [ " + Arreglo[k] + " ] ");
-
-        }
     }
 
 }

@@ -3,7 +3,7 @@ package logica;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-public class Ordenamiento extends javax.swing.JFrame  {
+public class Ordenamiento extends javax.swing.JFrame {
 
     String tipoOrdenamiento;
     int nElementos;
@@ -141,11 +141,11 @@ public class Ordenamiento extends javax.swing.JFrame  {
             case "Burbuja":
 
                 jTextArea1.setForeground(Color.GREEN);
-                 jTextArea1.append(" \n--------------------------------------------");
+                jTextArea1.append(" \n--------------------------------------------");
                 jTextArea1.append(" \n\n Metodo Burbuja");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i]+" )");
+                    jTextArea1.append(" ( " + matriz[i] + " )");
 
                 }
                 long inicio = System.currentTimeMillis();
@@ -154,7 +154,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n----------------------------------------------");
                 long fin2 = System.currentTimeMillis();
                 double tiempo = (double) ((fin2 - inicio));
-                lblTiempo.setText(" " + tiempo+" milisegundos");
+                lblTiempo.setText(" " + tiempo + " milisegundos");
 
                 break;
             case "Insercion":
@@ -163,7 +163,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n\n Metodo Insercion");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i]+" )");
+                    jTextArea1.append(" ( " + matriz[i] + " )");
 
                 }
                 long inici = System.currentTimeMillis();
@@ -172,7 +172,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n----------------------------------------------");
                 long fin3 = System.currentTimeMillis();
                 double tiemp = (double) ((fin3 - inici));
-                lblTiempo.setText(" " + tiemp+" milisegundos");
+                lblTiempo.setText(" " + tiemp + " milisegundos");
                 break;
             case "Seleccion":
                 jTextArea1.setForeground(Color.red);
@@ -189,7 +189,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n----------------------------------------------");
                 long fin4 = System.currentTimeMillis();
                 double te = (double) ((fin4 - ini));
-                lblTiempo.setText(" " + te+" milisegundos");
+                lblTiempo.setText(" " + te + " milisegundos");
                 break;
             case "Mezcla":
                 jTextArea1.setForeground(Color.ORANGE);
@@ -201,7 +201,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
 //                }
                 jTextArea1.append(" \n Arreglo original");
                 for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  ( " + matriz[l]+" )");
+                    jTextArea1.append("  ( " + matriz[l] + " )");
 
                 }
                 long inc = System.currentTimeMillis();
@@ -209,10 +209,10 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n------------------------------------------------");
                 long fin = System.currentTimeMillis();
                 double tmp = (double) ((fin - inc));
-                lblTiempo.setText(" " + tmp+" milisegundos");
+                lblTiempo.setText(" " + tmp + " milisegundos");
                 jTextArea1.append(" \n Arreglo ordenado");
                 for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  [ " + matriz[l]+" ] ");
+                    jTextArea1.append("  [ " + matriz[l] + " ] ");
 
                 }
                 break;
@@ -222,7 +222,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n\n Metodo Shellsort");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i]+" ) ");
+                    jTextArea1.append(" ( " + matriz[i] + " ) ");
 
                 }
                 long in = System.currentTimeMillis();
@@ -231,7 +231,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n--------------------------------------------------");
                 long f = System.currentTimeMillis();
                 double t = (double) ((f - in));
-                lblTiempo.setText(" " + t+" milisegundos");
+                lblTiempo.setText(" " + t + " milisegundos");
                 break;
             case "quicksort":
                 int i = 1;
@@ -241,16 +241,20 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 jTextArea1.append(" \n\n Metodo Quicksort");
                 jTextArea1.append(" \n Arreglo original");
                 for (int k = 0; k < matriz.length; k++) {
-                    jTextArea1.append(" ( " + matriz[k]+" ) ");
+                    jTextArea1.append(" ( " + matriz[k] + " ) ");
 
                 }
                 long in2 = System.currentTimeMillis();
 
-                metodos.quicksort(matriz, i, j);
+                metodos.quicksort(matriz, 0, matriz.length-1);
+                jTextArea1.append(" \nArreglo ordenado ");
+                for (int k = 0; k < matriz.length; k++) {
+                    jTextArea1.append(" [ " + matriz[k] + " ] ");
+                }
                 jTextArea1.append(" \n--------------------------------------------------");
                 long f2 = System.currentTimeMillis();
                 double tm = (double) ((f2 - in2));
-                lblTiempo.setText(" " + tm+" milisegundos");
+                lblTiempo.setText(" " + tm + " milisegundos");
                 break;
 
         }
@@ -280,6 +284,4 @@ public class Ordenamiento extends javax.swing.JFrame  {
     public static javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 
-   
-
-    }
+}
