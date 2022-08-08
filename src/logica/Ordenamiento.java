@@ -12,7 +12,7 @@ public class Ordenamiento extends javax.swing.JFrame  {
 
     public Ordenamiento() {
         initComponents();
-        setSize(600, 454);
+        setSize(563, 454);
         setExtendedState(getExtendedState());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,10 +40,11 @@ public class Ordenamiento extends javax.swing.JFrame  {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        panel.setBackground(new java.awt.Color(204, 204, 204));
+        panel.setBackground(new java.awt.Color(0, 51, 255));
 
         comboMetodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Burbuja", "Insercion", "Seleccion", "Mezcla", "Shellsort", "quicksort" }));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Selecciona metodo ordenamiento");
 
         jTextArea1.setColumns(20);
@@ -65,34 +66,39 @@ public class Ordenamiento extends javax.swing.JFrame  {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tiempo de ejecucion");
+
+        lblTiempo.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelLayout.createSequentialGroup()
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(comboMetodos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(btnOrdenar)
-                            .addGap(17, 17, 17)
-                            .addComponent(btnLimpiar)
-                            .addGap(8, 8, 8)
-                            .addComponent(jLabel2)
-                            .addGap(10, 10, 10)
-                            .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(comboMetodos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnOrdenar)
+                        .addGap(17, 17, 17)
+                        .addComponent(btnLimpiar)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +111,11 @@ public class Ordenamiento extends javax.swing.JFrame  {
                     .addComponent(btnOrdenar)
                     .addComponent(btnLimpiar)
                     .addComponent(jLabel2)
-                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -135,15 +141,17 @@ public class Ordenamiento extends javax.swing.JFrame  {
             case "Burbuja":
 
                 jTextArea1.setForeground(Color.GREEN);
-                jTextArea1.append(" \n Metodo Burbuja");
+                 jTextArea1.append(" \n--------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Burbuja");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" " + matriz[i]);
+                    jTextArea1.append(" ( " + matriz[i]+" )");
 
                 }
                 long inicio = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 metodos.burbuja(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
                 long fin2 = System.currentTimeMillis();
                 double tiempo = (double) ((fin2 - inicio));
                 lblTiempo.setText(" " + tiempo+" milisegundos");
@@ -151,22 +159,25 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 break;
             case "Insercion":
                 jTextArea1.setForeground(Color.BLUE);
-                jTextArea1.append(" \n Metodo Insercion");
+                jTextArea1.append(" \n----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Insercion");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" " + matriz[i]);
+                    jTextArea1.append(" ( " + matriz[i]+" )");
 
                 }
                 long inici = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 metodos.insercion(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
                 long fin3 = System.currentTimeMillis();
                 double tiemp = (double) ((fin3 - inici));
                 lblTiempo.setText(" " + tiemp+" milisegundos");
                 break;
             case "Seleccion":
                 jTextArea1.setForeground(Color.red);
-                jTextArea1.append(" \n Metodo Seleccion");
+                jTextArea1.append(" \n-----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Seleccion");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
                     jTextArea1.append(" " + matriz[i]);
@@ -175,45 +186,49 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 long ini = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 metodos.seleccion(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
                 long fin4 = System.currentTimeMillis();
                 double te = (double) ((fin4 - ini));
                 lblTiempo.setText(" " + te+" milisegundos");
                 break;
             case "Mezcla":
                 jTextArea1.setForeground(Color.ORANGE);
-                jTextArea1.append(" \n Metodo Mezcla");
-                jTextArea1.append(" \n Arreglo original");
-                for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" " + matriz[i]);
-
-                }
+                jTextArea1.append(" \n-----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Mezcla");
+//                for (int i = 0; i < matriz.length; i++) {
+//                    jTextArea1.append(" " + matriz[i]);
+//
+//                }
                 jTextArea1.append(" \n Arreglo original");
                 for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  " + matriz[l]);
+                    jTextArea1.append("  ( " + matriz[l]+" )");
 
                 }
                 long inc = System.currentTimeMillis();
                 matriz = metodos.mezcla(matriz);
+                jTextArea1.append(" \n------------------------------------------------");
                 long fin = System.currentTimeMillis();
                 double tmp = (double) ((fin - inc));
                 lblTiempo.setText(" " + tmp+" milisegundos");
                 jTextArea1.append(" \n Arreglo ordenado");
                 for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  " + matriz[l]);
+                    jTextArea1.append("  [ " + matriz[l]+" ] ");
 
                 }
                 break;
             case "Shellsort":
                 jTextArea1.setForeground(Color.GRAY);
-                jTextArea1.append(" \n Metodo Shellsort");
+                jTextArea1.append(" \n-------------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Shellsort");
                 jTextArea1.append(" \n Arreglo original");
                 for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" " + matriz[i]);
+                    jTextArea1.append(" ( " + matriz[i]+" ) ");
 
                 }
                 long in = System.currentTimeMillis();
                 jTextArea1.append(" \n");
                 metodos.Shellsort(matriz);
+                jTextArea1.append(" \n--------------------------------------------------");
                 long f = System.currentTimeMillis();
                 double t = (double) ((f - in));
                 lblTiempo.setText(" " + t+" milisegundos");
@@ -222,15 +237,17 @@ public class Ordenamiento extends javax.swing.JFrame  {
                 int i = 1;
                 int j = matriz.length - 1;
                 jTextArea1.setForeground(Color.MAGENTA);
-                jTextArea1.append(" \n Metodo Quicksort");
+                jTextArea1.append(" \n--------------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Quicksort");
                 jTextArea1.append(" \n Arreglo original");
                 for (int k = 0; k < matriz.length; k++) {
-                    jTextArea1.append(" " + matriz[k]);
+                    jTextArea1.append(" ( " + matriz[k]+" ) ");
 
                 }
                 long in2 = System.currentTimeMillis();
 
                 metodos.quicksort(matriz, i, j);
+                jTextArea1.append(" \n--------------------------------------------------");
                 long f2 = System.currentTimeMillis();
                 double tm = (double) ((f2 - in2));
                 lblTiempo.setText(" " + tm+" milisegundos");

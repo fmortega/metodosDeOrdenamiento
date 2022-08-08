@@ -13,14 +13,12 @@ public class MetodosOrdenamiento implements Ordena {
             for (int j = 0; j < matriz.length - 1; j++) {
 
                 if (matriz[j] > matriz[j + 1]) {
-
                     for (int k = 0; k < matriz.length; k++) {
 
                         jTextArea1.append(" " + matriz[k]);
 
                     }
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[j] + " por el " + matriz[j + 1] + "\n");
-                    System.out.println("");
+                    jTextArea1.append(" " + " <-- Se cambia el " + " [ " + matriz[j] + " ] " + " por el " + " [ " + matriz[j + 1] + " ] \n");
                     temporal = matriz[j];
 
                     matriz[j] = matriz[j + 1];
@@ -30,6 +28,11 @@ public class MetodosOrdenamiento implements Ordena {
                 }
 
             }
+
+        }
+        jTextArea1.append(" \n Arreglo ordenado");
+        for (int i = 0; i < matriz.length; i++) {
+            jTextArea1.append(" [ " + matriz[i] + " ] ");
 
         }
     }
@@ -45,13 +48,10 @@ public class MetodosOrdenamiento implements Ordena {
 
                 if (pos > 0) {
                     for (int k = 0; k < matriz.length; k++) {
-
-                        System.out.print(" " + matriz[k]);
-                        jTextArea1.append(" " + matriz[k]);
+                        jTextArea1.append(" [" + matriz[k] + " ]");
 
                     }
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[pos] + " por el " + matriz[pos - 1] + "\n");
-                    System.out.println(" <-- Se cambia el " + matriz[pos] + " por el " + matriz[pos - 1]);
+                    jTextArea1.append(" " + " <-- Se cambia el " + " [ " + matriz[pos] + " ] por el " + " [ " + matriz[pos - 1] + " ]\n");
                 }
 
                 while ((pos > 0) && (matriz[pos - 1] > aux)) {
@@ -66,7 +66,7 @@ public class MetodosOrdenamiento implements Ordena {
         }
         jTextArea1.append(" \n Arreglo ordenado");
         for (int i = 0; i < matriz.length; i++) {
-            jTextArea1.append(" " + matriz[i]);
+            jTextArea1.append(" [ " + matriz[i] + " ] ");
 
         }
     }
@@ -77,14 +77,14 @@ public class MetodosOrdenamiento implements Ordena {
         for (int i = 0; i < matriz.length - 1; i++) {
             minimo = i;
             for (int k = 0; k < matriz.length; k++) {
-                jTextArea1.append(" " + matriz[k]);
+                jTextArea1.append(" [ " + matriz[k] + " ] ");
 
             }
 
             for (int j = i + 1; j < matriz.length; j++) {
                 if (matriz[j] < matriz[minimo]) {
                     minimo = j;
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[i] + " por el " + matriz[minimo] + "\n");
+                    jTextArea1.append(" " + " <-- Se cambia el " + " [ " + matriz[i] + " ] por el " + " [ " + matriz[minimo] + " ]\n");
 
                 }
 
@@ -97,7 +97,7 @@ public class MetodosOrdenamiento implements Ordena {
         }
         jTextArea1.append(" \n Arreglo ordenado -->");
         for (int i = 0; i < matriz.length; i++) {
-            jTextArea1.append(" " + matriz[i]);
+            jTextArea1.append(" [ " + matriz[i] + " ] ");
 
         }
     }
@@ -113,12 +113,12 @@ public class MetodosOrdenamiento implements Ordena {
             jTextArea1.append(" \n Subarreglo A --> ");
             for (i = 0; i < elementosIzq; i++) {
                 arregloIzq[i] = matriz[i];
-                jTextArea1.append(" " + matriz[i]);
+                jTextArea1.append(" [ " + matriz[i] + " ] ");
             }
             jTextArea1.append(" \n Subarreglo B --> ");
             for (i = elementosIzq; i < elementosIzq + elementosDer; i++) {
                 arregloDer[i - elementosIzq] = matriz[i];
-                jTextArea1.append(" " + matriz[i]);
+                jTextArea1.append(" [ " + matriz[i] + " ] ");
             }
             arregloIzq = mezcla(arregloIzq);
             arregloDer = mezcla(arregloDer);
@@ -143,17 +143,14 @@ public class MetodosOrdenamiento implements Ordena {
                 matriz[i] = arregloIzq[j];
                 i++;
                 j++;
-
+   
             }
             while (arregloDer.length != k) {
                 matriz[i] = arregloDer[k];
                 i++;
                 k++;
-
             }
-
         }
-
         return matriz;
     }
 
@@ -164,29 +161,22 @@ public class MetodosOrdenamiento implements Ordena {
 
             for (int i = increment; i < matriz.length; i++) {
                 for (int k = 0; k < matriz.length; k++) {
-
-                    System.out.print(" " + matriz[k]);
                     jTextArea1.append(" " + matriz[k]);
 
                 }
-
                 for (int j = i; j >= increment && matriz[j - increment]
                         > matriz[j]; j -= increment) {
-                    jTextArea1.append(" " + " <-- Se cambia el " + matriz[j] + " por el " + matriz[j - increment] + "\n");
+                    jTextArea1.append(" " + " <-- Se cambia el [ " + matriz[j] + " ] por el [ " + matriz[j - increment] + " ] \n");
                     int temp = matriz[j];
                     matriz[j] = matriz[j - increment];
                     matriz[j - increment] = temp;
-
                 }
-
             }
         }
         jTextArea1.append(" Arreglo ordenado \n");
         for (int k = 0; k < matriz.length; k++) {
-
             System.out.print(" " + matriz[k]);
-            jTextArea1.append(" " + matriz[k]);
-
+            jTextArea1.append(" [ " + matriz[k] + " ] ");
         }
     }
 
@@ -201,7 +191,7 @@ public class MetodosOrdenamiento implements Ordena {
             for (int k = 0; k < Arreglo.length; k++) {
                 jTextArea1.append(" " + Arreglo[k]);
             }
-            jTextArea1.append(" \n" + " <-- Se cambia el " + Arreglo[izq] + " por el " + Arreglo[der]);// mientras no se crucen las búsquedas                                   
+            jTextArea1.append(" \n" + " <-- Se cambia el [ " + Arreglo[izq] + " ] por el [ " + Arreglo[der] + " ] ");// mientras no se crucen las búsquedas                                   
             while (Arreglo[i] <= pivote && i < j) {
                 i++; // busca elemento mayor que pivote
             }
@@ -230,7 +220,7 @@ public class MetodosOrdenamiento implements Ordena {
         jTextArea1.append(" \nArreglo ordenado ");
         for (int k = 0; k < Arreglo.length; k++) {
 
-            jTextArea1.append(" " + Arreglo[k]);
+            jTextArea1.append(" [ " + Arreglo[k] + " ] ");
 
         }
     }
