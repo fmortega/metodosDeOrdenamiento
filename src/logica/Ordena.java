@@ -13,5 +13,6 @@ public interface Ordena {
     public void Shellsort(int matriz[]);
 
     public void quicksort(int[] A,int izq, int der);
+  
 
 }

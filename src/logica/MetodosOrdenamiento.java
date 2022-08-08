@@ -1,6 +1,9 @@
 package logica;
 
+import java.awt.Color;
+import java.util.Random;
 import javax.swing.JOptionPane;
+import static logica.Ordenamiento.comboMetodos;
 import static logica.Ordenamiento.jTextArea1;
 
 public class MetodosOrdenamiento implements Ordena {

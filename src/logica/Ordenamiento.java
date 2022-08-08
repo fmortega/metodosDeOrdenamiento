@@ -1,14 +1,16 @@
 package logica;
 
 import java.awt.Color;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class Ordenamiento extends javax.swing.JFrame {
 
-    String tipoOrdenamiento;
+   MetodosOrdenamiento metodos;
+   
+   String tipoOrdenamiento;
     int nElementos;
     int matriz[];
-    MetodosOrdenamiento metodos;
 
     public Ordenamiento() {
         initComponents();
@@ -21,6 +23,8 @@ public class Ordenamiento extends javax.swing.JFrame {
         metodos = new MetodosOrdenamiento();
 
     }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,138 +130,7 @@ public class Ordenamiento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        tipoOrdenamiento = (String) comboMetodos.getSelectedItem();
-        if (comboMetodos.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Seleccione un metodo a ordenar");
-        } else {
-            nElementos = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad de elelmentos"));
-            matriz = new int[nElementos];
-            for (int i = 0; i < nElementos; i++) {
-                matriz[i] = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el numero en la posicion " + (i + 1)));
-            }
-        }
-
-        switch (tipoOrdenamiento) {
-            case "Burbuja":
-
-                jTextArea1.setForeground(Color.GREEN);
-                jTextArea1.append(" \n--------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Burbuja");
-                jTextArea1.append(" \n Arreglo original");
-                for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i] + " )");
-
-                }
-                long inicio = System.currentTimeMillis();
-                jTextArea1.append(" \n");
-                metodos.burbuja(matriz);
-                jTextArea1.append(" \n----------------------------------------------");
-                long fin2 = System.currentTimeMillis();
-                double tiempo = (double) ((fin2 - inicio));
-                lblTiempo.setText(" " + tiempo + " milisegundos");
-
-                break;
-            case "Insercion":
-                jTextArea1.setForeground(Color.BLUE);
-                jTextArea1.append(" \n----------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Insercion");
-                jTextArea1.append(" \n Arreglo original");
-                for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i] + " )");
-
-                }
-                long inici = System.currentTimeMillis();
-                jTextArea1.append(" \n");
-                metodos.insercion(matriz);
-                jTextArea1.append(" \n----------------------------------------------");
-                long fin3 = System.currentTimeMillis();
-                double tiemp = (double) ((fin3 - inici));
-                lblTiempo.setText(" " + tiemp + " milisegundos");
-                break;
-            case "Seleccion":
-                jTextArea1.setForeground(Color.red);
-                jTextArea1.append(" \n-----------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Seleccion");
-                jTextArea1.append(" \n Arreglo original");
-                for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" " + matriz[i]);
-
-                }
-                long ini = System.currentTimeMillis();
-                jTextArea1.append(" \n");
-                metodos.seleccion(matriz);
-                jTextArea1.append(" \n----------------------------------------------");
-                long fin4 = System.currentTimeMillis();
-                double te = (double) ((fin4 - ini));
-                lblTiempo.setText(" " + te + " milisegundos");
-                break;
-            case "Mezcla":
-                jTextArea1.setForeground(Color.ORANGE);
-                jTextArea1.append(" \n-----------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Mezcla");
-//                for (int i = 0; i < matriz.length; i++) {
-//                    jTextArea1.append(" " + matriz[i]);
-//
-//                }
-                jTextArea1.append(" \n Arreglo original");
-                for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  ( " + matriz[l] + " )");
-
-                }
-                long inc = System.currentTimeMillis();
-                matriz = metodos.mezcla(matriz);
-                jTextArea1.append(" \n------------------------------------------------");
-                long fin = System.currentTimeMillis();
-                double tmp = (double) ((fin - inc));
-                lblTiempo.setText(" " + tmp + " milisegundos");
-                jTextArea1.append(" \n Arreglo ordenado");
-                for (int l = 0; l < matriz.length; l++) {
-                    jTextArea1.append("  [ " + matriz[l] + " ] ");
-
-                }
-                break;
-            case "Shellsort":
-                jTextArea1.setForeground(Color.GRAY);
-                jTextArea1.append(" \n-------------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Shellsort");
-                jTextArea1.append(" \n Arreglo original");
-                for (int i = 0; i < matriz.length; i++) {
-                    jTextArea1.append(" ( " + matriz[i] + " ) ");
-
-                }
-                long in = System.currentTimeMillis();
-                jTextArea1.append(" \n");
-                metodos.Shellsort(matriz);
-                jTextArea1.append(" \n--------------------------------------------------");
-                long f = System.currentTimeMillis();
-                double t = (double) ((f - in));
-                lblTiempo.setText(" " + t + " milisegundos");
-                break;
-            case "quicksort":
-                int i = 1;
-                int j = matriz.length - 1;
-                jTextArea1.setForeground(Color.MAGENTA);
-                jTextArea1.append(" \n--------------------------------------------------");
-                jTextArea1.append(" \n\n Metodo Quicksort");
-                jTextArea1.append(" \n Arreglo original");
-                for (int k = 0; k < matriz.length; k++) {
-                    jTextArea1.append(" ( " + matriz[k] + " ) ");
-
-                }
-                long in2 = System.currentTimeMillis();
-
-                metodos.quicksort(matriz, 0, matriz.length-1);
-                jTextArea1.append(" \nArreglo ordenado ");
-                for (int k = 0; k < matriz.length; k++) {
-                    jTextArea1.append(" [ " + matriz[k] + " ] ");
-                }
-                jTextArea1.append(" \n--------------------------------------------------");
-                long f2 = System.currentTimeMillis();
-                double tm = (double) ((f2 - in2));
-                lblTiempo.setText(" " + tm + " milisegundos");
-                break;
-
-        }
+    ordenar();
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -280,8 +153,165 @@ public class Ordenamiento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblTiempo;
+    public static javax.swing.JLabel lblTiempo;
     public static javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
+ public void ordenar() {
+        tipoOrdenamiento = (String) comboMetodos.getSelectedItem();
+        String opcion[] = {"Manual", "Aleatorio"};
+        if (comboMetodos.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un metodo a ordenar");
+        } else {
+            nElementos = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese cantidad de elelmentos"));
+            int opt = eligeOpcion();
+            if (opt == 0) {
+                matriz = new int[nElementos];
+                for (int i = 0; i < nElementos; i++) {
+                    matriz[i] = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el numero en la posicion " + (i + 1)));
+                }
+            } else {
+                matriz = generaNumeros(nElementos);
+            }
+
+        }
+
+        switch (tipoOrdenamiento) {
+            case "Burbuja":
+
+                jTextArea1.setForeground(Color.GREEN);
+                jTextArea1.append(" \n--------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Burbuja");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" ( " + matriz[i] + " )");
+
+                }
+                long inicio = System.currentTimeMillis();
+                jTextArea1.append(" \n");
+                metodos.burbuja(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
+                long fin2 = System.currentTimeMillis();
+                double tiempo = (double) ((fin2 - inicio));
+                Ordenamiento.lblTiempo.setText(" " + tiempo + " milisegundos");
+
+                break;
+            case "Insercion":
+                jTextArea1.setForeground(Color.BLUE);
+                jTextArea1.append(" \n----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Insercion");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" ( " + matriz[i] + " )");
+
+                }
+                long inici = System.currentTimeMillis();
+                jTextArea1.append(" \n");
+                metodos.insercion(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
+                long fin3 = System.currentTimeMillis();
+                double tiemp = (double) ((fin3 - inici));
+                Ordenamiento.lblTiempo.setText(" " + tiemp + " milisegundos");
+                break;
+            case "Seleccion":
+                jTextArea1.setForeground(Color.red);
+                jTextArea1.append(" \n-----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Seleccion");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" " + matriz[i]);
+
+                }
+                long ini = System.currentTimeMillis();
+                jTextArea1.append(" \n");
+                metodos.seleccion(matriz);
+                jTextArea1.append(" \n----------------------------------------------");
+                long fin4 = System.currentTimeMillis();
+                double te = (double) ((fin4 - ini));
+                Ordenamiento.lblTiempo.setText(" " + te + " milisegundos");
+                break;
+            case "Mezcla":
+                jTextArea1.setForeground(Color.ORANGE);
+                jTextArea1.append(" \n-----------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Mezcla");
+//                for (int i = 0; i < matriz.length; i++) {
+//                    jTextArea1.append(" " + matriz[i]);
+//
+//                }
+                jTextArea1.append(" \n Arreglo original");
+                for (int l = 0; l < matriz.length; l++) {
+                    jTextArea1.append("  ( " + matriz[l] + " )");
+
+                }
+                long inc = System.currentTimeMillis();
+                matriz = metodos.mezcla(matriz);
+                jTextArea1.append(" \n------------------------------------------------");
+                long fin = System.currentTimeMillis();
+                double tmp = (double) ((fin - inc));
+                Ordenamiento.lblTiempo.setText(" " + tmp + " milisegundos");
+                jTextArea1.append(" \n Arreglo ordenado");
+                for (int l = 0; l < matriz.length; l++) {
+                    jTextArea1.append("  [ " + matriz[l] + " ] ");
+
+                }
+                break;
+            case "Shellsort":
+                jTextArea1.setForeground(Color.GRAY);
+                jTextArea1.append(" \n-------------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Shellsort");
+                jTextArea1.append(" \n Arreglo original");
+                for (int i = 0; i < matriz.length; i++) {
+                    jTextArea1.append(" ( " + matriz[i] + " ) ");
+
+                }
+                long in = System.currentTimeMillis();
+                jTextArea1.append(" \n");
+                metodos.Shellsort(matriz);
+                jTextArea1.append(" \n--------------------------------------------------");
+                long f = System.currentTimeMillis();
+                double t = (double) ((f - in));
+                Ordenamiento.lblTiempo.setText(" " + t + " milisegundos");
+                break;
+            case "quicksort":
+                int i = 1;
+                int j = matriz.length - 1;
+                jTextArea1.setForeground(Color.MAGENTA);
+                jTextArea1.append(" \n--------------------------------------------------");
+                jTextArea1.append(" \n\n Metodo Quicksort");
+                jTextArea1.append(" \n Arreglo original");
+                for (int k = 0; k < matriz.length; k++) {
+                    jTextArea1.append(" ( " + matriz[k] + " ) ");
+
+                }
+                long in2 = System.currentTimeMillis();
+
+                metodos.quicksort(matriz, 0, matriz.length - 1);
+                jTextArea1.append(" \nArreglo ordenado ");
+                for (int k = 0; k < matriz.length; k++) {
+                    jTextArea1.append(" [ " + matriz[k] + " ] ");
+                }
+                jTextArea1.append(" \n--------------------------------------------------");
+                long f2 = System.currentTimeMillis();
+                double tm = (double) ((f2 - in2));
+                Ordenamiento.lblTiempo.setText(" " + tm + " milisegundos");
+                break;
+
+        }
+    }
+    public int eligeOpcion() {
+        String opcion[] = {"Manual", "Aleatorio"};
+        int indice = JOptionPane.showOptionDialog(null, "Como quiere llenar el arreglo?", "Elige opcion",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcion, opcion[0]);
+        return indice;
+    }
+
+    public int[] generaNumeros(int tam) {
+        Random r = new Random();
+        int array[] = new int[tam];
+        for (int i = 0; i < tam; i++) {
+            array[i] = r.nextInt(tam);
+        }
+        return array;
+    }
 
 }
